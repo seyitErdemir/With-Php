@@ -1,4 +1,4 @@
-Bir database açıp tablomuzu  açtıgımız database içe aktarıp dosyalarımızdaki db.php de bulunan database baglantısındaki database ismini açtıgımız database yaparak kullanıma hazır hale gelmiş olur.
+Dosyanın içinde bulunan web.sql  dosyasıı mysql de içe aktarın. Program için gerekli tablo kendiliginden oluşturulacaktır.   kurulKayit.php dosyasını kullanarak kayıt ekleyip kurul.php dosyasında aldıgınız kayıtları görebilirsiniz. 
 # Ekran Görüntüleri
 ### Kurul Ekranı:
 ![Ana Ekran](https://raw.githubusercontent.com/seyitErdemir/User-Registration-PHP/main/ss/kurul.png)
