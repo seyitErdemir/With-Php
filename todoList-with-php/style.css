@@ -1,0 +1,23 @@
+body{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+    background-color: black;
+}
+
+.enDis {
+    margin-top: 1rem;
+    padding: 1rem;
+    border: 1px solid white;
+}
+
+.card {
+    margin-top: 1rem;
+    
+}
+.card-body{
+    color:black;
+}
+.card-body i {
+    float: right;
+    margin-right: 1rem;font-size: 30px;
+}
