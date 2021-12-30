@@ -1,18 +1,21 @@
 <?php
-    // class Mernis{
-    //     function mernis($veriler){
-    //         $baglan = new SoapClient("https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx?WSDL");
-    //         $sonuc = $baglan->TCKimlikNoDogrula($veriler);
-    //     }
+    class Mernis{
 
-    // }
+        public function __construct()
+        {
+        }
 
-    // $mernis = new Mernis();
+
+        function mernis($veriler){
+            $baglan = new SoapClient("https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx?WSDL");
+            $sonuc = $baglan->TCKimlikNoDogrula($veriler);
+
+            return $sonuc;
+        }
+
+    }
+    
 
     
- 
-    $baglan = new SoapClient("https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx?WSDL");
-    $sonuc = $baglan->TCKimlikNoDogrula($veriler);
- 
 
 ?>

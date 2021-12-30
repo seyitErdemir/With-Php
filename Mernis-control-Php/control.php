@@ -1,58 +1,77 @@
 <?php
 
-
-
-
+include("mernis.php");
 include("db.php");
 
 
-if ($_POST) {
 
-    $tckn = $_POST['tc'];
-    $ad = $_POST['ad'];
-    $soyad = $_POST['soyad'];
-    $dogumYili = $_POST['dogum'];
+class Control extends Db
+{
 
-    $veriler = array(
-        'TCKimlikNo' => $tckn,
-        'Ad' => $ad,
-        'Soyad' => $soyad,
-        'DogumYili' => $dogumYili
-    );
+    public  function __construct()
+    {
+    }
 
-    $data = array(
-        'tc' => $tckn,
-        'ad' => $ad,
-        'soyad' => $soyad,
-        'yil' => $dogumYili
-    );
+    public function control()
+    {
+
+        $database = new Control();
+        $db = $database->db();
 
 
 
-    include("mernis.php");
-  
 
-    if ($sonuc->TCKimlikNoDogrulaResult) {
 
-        $insert = $db->prepare("INSERT INTO mernis SET 
-        ad=:ad,
-        soyad=:soyad,
-        tc=:tc,
-        yil=:yil
-     ");
+        if ($_POST) {
 
-        $query = $db->query("SELECT * FROM mernis WHERE tc = '{$tckn}'")->fetch();
-        if ($query) {
-            header("Refresh: 0.1; alert2.html");
-            //  echo " bu kullanıcı bulunmakta";
-        } else {
-            $result = $insert->execute($data);
-            if ($result) {
-                header("Refresh: 0.1; award.html");
+            $tckn = $_POST['tc'];
+            $ad = $_POST['ad'];
+            $soyad = $_POST['soyad'];
+            $dogumYili = $_POST['dogum'];
 
-                // echo "kayit edildi";
-            } else {
-                echo ' <div class=" mt-2 container">
+            $veriler = array(
+                'TCKimlikNo' => $tckn,
+                'Ad' => $ad,
+                'Soyad' => $soyad,
+                'DogumYili' => $dogumYili
+            );
+
+            $data = array(
+                'tc' => $tckn,
+                'ad' => $ad,
+                'soyad' => $soyad,
+                'yil' => $dogumYili
+            );
+
+
+
+            $mernis = new Control();
+            $sonuc = $mernis->mernis($veriler);
+
+
+
+
+            if ($sonuc->TCKimlikNoDogrulaResult) {
+
+                $insert = $db->prepare("INSERT INTO mernis SET 
+                    ad=:ad,
+                    soyad=:soyad,
+                    tc=:tc,
+                    yil=:yil
+                ");
+
+                $query = $db->query("SELECT * FROM mernis WHERE tc = '{$tckn}'")->fetch();
+                if ($query) {
+                    header("Refresh: 0.1; alert2.html");
+                    //  echo " bu kullanıcı bulunmakta";
+                } else {
+                    $result = $insert->execute($data);
+                    if ($result) {
+                        header("Refresh: 0.1; award.html");
+
+                        // echo "kayit edildi";
+                    } else {
+                        echo ' <div class=" mt-2 container">
                 <div class="col-6">
                      <div class="alert alert-danger" role="alert">
                      Kayıt Başarısız
@@ -60,15 +79,19 @@ if ($_POST) {
                 </div>
             </div>';
 
-                // echo "kayit başarısız";
+                        // echo "kayit başarısız";
+                    }
+                }
+            } else {
+                header("Refresh: 0.1; alert1.html");
+
+
+                // echo "Girmiş olduğunuz kimlik bilgileri yanlıştır.";
             }
         }
-    } else {
-        header("Refresh: 0.1; alert1.html");
-
-
-        // echo "Girmiş olduğunuz kimlik bilgileri yanlıştır.";
     }
 }
 
-?>
+
+$islem = new Control();
+$islem->control();
