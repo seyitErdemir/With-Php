@@ -15,5 +15,5 @@ After downloading the file, drop it into the tool you use for Server connection.
 ### Error Screen
 ![wrong reward](src/odulAlindi.png) 
 
-### Error Screen
-![award](src/adul.png) 
+### award Screen
+![award](src/odul.png) 
