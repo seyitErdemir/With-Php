@@ -1,5 +1,5 @@
 <?php
-    class Mernis{
+    abstract class Mernis{
 
         public function __construct()
         {
