@@ -9,7 +9,7 @@
 
 ![example](db1.jpg) 
 
-![example](db2.jpg) 
+![example](db2.png) 
  
 ![example](locale.jpg) 
  
