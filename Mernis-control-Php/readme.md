@@ -7,8 +7,9 @@
 1-Download the repo. 2-Run WAMP. 3-Put the downloaded repo to the "www" directory. 4-Transfer the SQL file to the local database.
  
 
+![example](db1.jpg) 
+
+![example](db2.jpg) 
  
-![example](example/1.jpg) 
- 
-![example](example/2.jpg) 
+![example](locale.jpg) 
  
