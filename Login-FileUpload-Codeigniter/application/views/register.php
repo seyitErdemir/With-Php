@@ -10,25 +10,12 @@
 
 <body>
     <div class="row p-5 m-4  ">
-        <ul class="d-flex ">
-            <li class="p-3 list-group-item  "> <a href="<?= base_url('welcome/login') ?>">
-                    <h1>Login</h1>
-                </a>
-            </li>
-            <li class="p-3 list-group-item  "> <a href="<?= base_url('welcome/registerNow') ?>">
-                    <h1>Register</h1>
-                </a>
-            </li>
-            <li class="p-3 list-group-item  "> <a href="<?= base_url('welcome/logout') ?>">
-                    <h1>Çıkış Yap</h1>
-                </a>
-            </li>
-        </ul>
+        <?php include_once('Partials/menu.php');    ?>
     </div>
     <div class="container mt-5 p-5">
         <h1>Register</h1>
         <div class="col-4">
-            <form method="post" autocomplete="off" action="<?= base_url('welcome/registerNow') ?>">
+            <form method="post" autocomplete="off" action="<?= base_url('registerNow') ?>">
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Name</label>
                     <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -47,9 +34,17 @@
                 <?php
                 if ($this->session->flashdata('success')) {  ?>
 
-                    <p class="text-success p-3"> <?= $this->session->flashdata('success') ?></p>
 
-                <?php  } ?>
+                    <div class="alert alert-success  mt-2 " role="alert">
+
+                        <?= $this->session->flashdata('success') ?>
+                    </div>
+
+
+
+
+                <?php header("refresh:3;url=login");
+                } ?>
 
             </form>
         </div>

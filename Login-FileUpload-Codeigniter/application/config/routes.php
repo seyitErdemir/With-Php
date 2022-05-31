@@ -56,5 +56,14 @@ $route['translate_uri_dashes'] = FALSE;
 
 // Login and Register
  
-$route['deneme'] = "Auth/Deneme/index"; 
-// $route['login'] = "Auth/Deneme/index"; 
+ 
+$route['login'] = "Auth/Auth/login"; 
+$route['register'] = "Auth/Auth/index"; 
+$route['logout'] = "Auth/Auth/logout";
+
+$route['loginNow']['POST'] = "Auth/Auth/loginNow";
+$route['registerNow']['POST'] = "Auth/Auth/registerNow";
+
+
+$route['dashboard'] = "Dashboard/getDashboard"; 
+$route['fileUpload']['POST'] = "Dashboard/fileUpload";

@@ -1,23 +1,12 @@
 <?php
-if ($this->session->userdata('UserLoginSession')) {
-
-    $udata = $this->session->userdata('UserLoginSession');
-    echo 'welcome      '  . $udata['name'];
-} else {
-    redirect(base_url('welcome/login'));
+$udata = $this->session->userdata('UserLoginSession');
+if (isset($_SESSION['movedImage'])) {
+    $imageAdresi = $_SESSION['movedImage']['upload_data']['file_name'];
 }
-
 ?>
 
 
-<?php
-if ($this->session->userdata('UserLoginSession')) {
 
-    $image = $this->session->userdata('getImage');
-    echo $image;
-}
-
-?>
 
 
 <!doctype html>
@@ -32,36 +21,30 @@ if ($this->session->userdata('UserLoginSession')) {
 
 <body>
     <div class="row p-5 m-4  ">
-        <ul class="d-flex ">
-            <li class="p-3 list-group-item  "> <a href="<?= base_url('welcome/login') ?>">
-                    <h1>Login</h1>
-                </a>
-            </li>
-            <li class="p-3 list-group-item  "> <a href="<?= base_url('welcome/registerNow') ?>">
-                    <h1>Register</h1>
-                </a>
-            </li>
-            <li class="p-3 list-group-item  "> <a href="<?= base_url('welcome/logout') ?>">
-                    <h1>Çıkış Yap</h1>
-                </a>
-            </li>
-        </ul>
+        <?php include_once('Partials/menu.php');    ?>
     </div>
-    <div class="container  p-2">
-        <h1 class="mt-5 p-3">Dosya Yükle</h1>
-        <div class="row mt-1 p-5">
-            <div class="col-12">
-                <hr>
-                <?php if (isset($error)) {
+    <div class="container p-1">
+        <h1>Merhaba <b> <i> <?= $udata['name']; ?> </i></b> Hoşgeldin</h1>
+    </div>
+    <div class="container  text-center p-1">
+        <h3 class="mt-5 p-3">Dosya Yükle</h3>
+        <div class="row mt-1 p-3">
+            <div class="col-6  mx-auto ">
 
-                    echo $error;
-                }  ?>
-                <hr>
+                <?php if (isset($error)) { ?>
+                    <hr>
 
+                    <div class="alert alert-danger  mt-2  " role="alert">
+                        <h5> <?php echo $error;  ?></h5>
+                    </div>
+                   
+
+                    <hr>
+                <?php   header("refresh:1;url=dashboard");  }  ?>
 
 
                 <!-- <?php echo form_open_multipart('welcome/fileUpload'); ?> -->
-                <form method="post" action="<?php echo base_url("welcome/fileUpload"); ?>" enctype="multipart/form-data">
+                <form method="post" action="<?php echo base_url("fileUpload"); ?>" enctype="multipart/form-data">
 
                     <div class="input-group mb-3">
                         <input type="file" name="userfile" size="20" class="form-control" id="inputGroupFile02">
@@ -75,18 +58,28 @@ if ($this->session->userdata('UserLoginSession')) {
         </div>
     </div>
 
+
+
+
+
+
     <div class="container">
-        <?php if (isset($upload_data)) { ?>
-            <div class="row">
-                <div class="col-6 mx-auto text-center p-4">
+
+        <div class="row">
+            <div class="col-6 mx-auto text-center p-4">
+                <?php if (isset($_SESSION['movedImage'])) {    ?>
                     <!-- <img width="200px" src="../../uploads/<?= $upload_data['file_name'] ?>" alt=""> -->
-                    <img width="200px" src="<?php echo base_url("uploads") . "/" . $upload_data['file_name'] ?>" alt="">
+                    <img width="200px" src="<?php echo base_url("uploads") . "/" . $imageAdresi ?>" alt="">
 
-                </div>
+                <?php  }    ?>
             </div>
+        </div>
 
-            <h3>Resim kayıt işlemi başarılı.</h3>
+        <?php if (isset($upload_data)) { ?>
 
+            <div class="alert alert-success  mt-2 mb-4 " role="alert">
+                <h3>Resim kayıt işlemi başarılı.</h3>
+            </div>
 
 
             <?php
@@ -96,17 +89,25 @@ if ($this->session->userdata('UserLoginSession')) {
             // echo $file_name;
             ?>
 
-            <ul>
+            <!-- <ul>
 
                 <?php foreach ($upload_data as $item => $value) : ?>
                     <li><?php echo $item; ?>: <?php echo $value; ?></li>
                 <?php endforeach; ?>
-            </ul>
+            </ul> -->
 
-            <p><?php echo anchor('upload', 'Upload Another File!'); ?></p>
 
-        <?php  } ?>
+
+        <?php header("refresh:1;url=dashboard");
+        } ?>
     </div>
+
+
+
+
+
+
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
