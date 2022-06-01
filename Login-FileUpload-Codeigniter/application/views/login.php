@@ -30,17 +30,18 @@
                 <button type="submit" class="btn btn-primary">Giriş Yap</button>
                 <?php
                 if ($this->session->flashdata('error')) {  ?>
-
-                    <p class="text-danger p-3"> <?= $this->session->flashdata('error') ?></p>
-
-                <?php  } ?>
-
+                    <div class="alert alert-danger  mt-2 " role="alert">
+                        <?= $this->session->flashdata('error') ?>
+                    </div>
+                <?php header("refresh:2;url=login ");  } ?>
+              
                 <?php
                 if ($this->session->flashdata('success')) {  ?>
+                    <div class="alert alert-success  mt-2 " role="alert">
+                        <?= $this->session->flashdata('success') ?>
+                    </div>
 
-                    <p class="text-success p-3"> <?= $this->session->flashdata('success') ?></p>
-
-                <?php  } ?>
+                <?php header("refresh:2;url=login ");  } ?>
 
 
             </form>

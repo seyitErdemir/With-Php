@@ -34,17 +34,22 @@
                 <?php
                 if ($this->session->flashdata('success')) {  ?>
 
-
                     <div class="alert alert-success  mt-2 " role="alert">
-
                         <?= $this->session->flashdata('success') ?>
                     </div>
 
-
-
-
                 <?php header("refresh:3;url=login");
+                } else if ($this->session->flashdata('error')) { ?>
+
+                    <div class="alert alert-danger  mt-2 " role="alert">
+                        <?= $this->session->flashdata('error') ?>
+                    </div>
+
+                <?php header("refresh:3;url=register ");
                 } ?>
+
+
+
 
             </form>
         </div>
