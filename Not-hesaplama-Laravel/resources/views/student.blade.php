@@ -48,7 +48,9 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
+
                         <th scope="col">Ders Adı</th>
+                        <th scope="col">Dersin Öğretmeni</th>
                         <th width="400" scope="col">Dersi Al</th>
                         <th width="200" scope="col">Detaylı Görüntüle</th>
 
@@ -61,6 +63,8 @@
                     <tr>
                         <th scope="row">{{ $loop->index}}</th>
                         <td>{{$lesson->lesson_name}}</td>
+                        <td> {{App\Models\User::where('id' ,$lesson->teacher_id  )->first()->name}}</td>
+
                         <td>
                             <a class="btn btn-secondary" href="/ders-al/{{$lesson->id}}">Dersi Al</a>
                             <?php

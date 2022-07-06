@@ -26,11 +26,12 @@ class HomeController extends Controller
      */
     public function index(Guard $auth)
     {
-        $lessons = Lesson::where('teacher_id' , Auth::user()->id)->get();
+
         if ($auth->user()->type == 0) {
+            $lessons = Lesson::get();
             return view('student', compact('lessons'));
         } else {
-
+            $lessons = Lesson::where('teacher_id', Auth::user()->id)->get();
             return view('teacher', compact('lessons'));
         }
     }
