@@ -50,6 +50,8 @@
                         <th scope="col">#</th>
                         <th scope="col">Ders Adı</th>
                         <th width="400" scope="col">Dersi Al</th>
+                        <th width="200" scope="col">Detaylı Görüntüle</th>
+
 
 
                     </tr>
@@ -66,13 +68,13 @@
                             foreach ($taking_student as $tak) {
                                 if ($tak == Illuminate\Support\Facades\Auth::user()->id) {    ?>
                                     <span class=" btn btn-success">Bu Dersi Aldın</span>
-                                    <a class="btn btn-danger" href="/ders-birak/{{$lesson->id}}">Dersi Bırak</a>
+                                    <a class="btn btn-danger" href="/dersi-birak/{{$lesson->id}}">Dersi Bırak</a>
                             <?php   }
                             }  ?>
 
 
                         </td>
-
+                        <td><a class="btn btn-warning" href="/ders-goruntule/{{$lesson->id}}">Detaylı Görüntüle</a></td>
                     </tr>
                     @endforeach
                 </tbody>

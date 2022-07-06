@@ -62,15 +62,7 @@
                         <th scope="row">{{ $loop->index}}</th>
                         <td>{{$lesson->lesson_name}}</td>
                         <td><a class="btn btn-danger" href="/ders-sil/{{$lesson->id}}">Sil</a></td>
-                        <td>
-                            <?php $taking_student  =  explode(",", $lesson->taking_student);
-                            foreach ($taking_student as $tak) {   ?>
-                                @if(App\Models\User::where('id', $tak)->value('name') !="" )
-                                <span class=" btn btn-success">{{ App\Models\User::where('id', $tak)->value('name')}}</span>
-                                @endif
-                            <?php   }  ?>
-
-                        </td>
+                        <td><a class="btn btn-warning" href="/ders-goruntule/{{$lesson->id}}">Detaylı Görüntüle</a></td>
 
                     </tr>
                     @endforeach
