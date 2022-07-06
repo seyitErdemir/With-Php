@@ -9,16 +9,16 @@ Kurulum için sırasıyla terminale;
 Not: Bilgisayarınızda Php ve MySQL kurulu olması gerekir.
 
 ### Öğretmen Anasayfası
-![list](src/list.png)
+![list](image/ogretmenDashboard.png)
 
 ### Öğretmen Ders Ekleme Sayfası
-![list](src/list.png)
+![list](image/dersEkle.png)
 
 ### Öğrenci Anasayfası
-![list](src/list.png)
+![list](image/ogrenciDashboard.png)
 
 ### Öğrenci Not Detay Sayfası
-![list](src/list.png)
+![list](image/notDashboard.png)
 
 
  
