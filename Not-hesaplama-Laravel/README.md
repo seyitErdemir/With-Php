@@ -6,7 +6,7 @@ Kurulum için sırasıyla terminale;
     -> php artisan migrate
     -> php artisan serve
 
-Not: Bilgisayarınızda Php ve MySQL kurulu olması gerekir.
+Not: Bilgisayarınızda Php ve MySQL kurulu olması gerekir.MySQL içersinde task isimli bir veritabanı açtıktan sonra terminale yukarıdaki komutları sırasıyla yazınız. 
 
 ### Öğretmen Anasayfası
 ![list](image/ogretmenDashboard.png)
