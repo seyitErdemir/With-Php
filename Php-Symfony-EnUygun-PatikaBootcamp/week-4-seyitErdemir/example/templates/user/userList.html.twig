@@ -1,0 +1,38 @@
+{# templates/user/notifications.html.twig #}
+
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			Welcome
+			{{ myName }}
+			!
+		</title>
+		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+		<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet"/>
+
+	</head>
+	<body>
+		<h1 class="title p-4 m-4 text-center mx-auto">Welcome
+			{{ myName }}
+			!</h1>
+
+		<div class="text-center">
+			<ul class=" w-25 list-group mx-auto">
+
+				{% for name in userNameList %}
+					<li class="list-group-item">{{ name  }}</li>
+
+				{% endfor %}
+			</ul>
+
+		</div>
+
+		<div class="text-center">
+			<img class=" responsive  p-4 m-4  " src="{{ asset('images/logo.png') }}" alt="Symfony!"/>
+
+		</div>
+	</body>
+</html>
