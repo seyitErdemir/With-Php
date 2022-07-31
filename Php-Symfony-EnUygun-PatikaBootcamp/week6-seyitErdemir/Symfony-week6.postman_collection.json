@@ -1,0 +1,76 @@
+{
+	"info": {
+		"_postman_id": "b4230495-b260-4dbd-ba3a-d881dcf7a3a0",
+		"name": "Symfony-week6",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "18882276"
+	},
+	"item": [
+		{
+			"name": "Product List",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8000/product"
+			},
+			"response": []
+		},
+		{
+			"name": "Add Product",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Test2\",\r\n  \"description\": \"string\",\r\n  \"piece\": 3,\r\n  \"price\": \"350\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8000/product"
+			},
+			"response": []
+		},
+		{
+			"name": "Deleted Product",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://127.0.0.1:8000/product/2"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Product",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Test11111\",\r\n  \"description\": \"string\",\r\n  \"piece\": 33,\r\n  \"price\": \"35022\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8000/product/1"
+			},
+			"response": []
+		}
+	]
+}
