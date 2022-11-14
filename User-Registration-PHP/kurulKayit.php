@@ -20,32 +20,32 @@
 
     <div class="row">
         <div class="col-6 " style="border: 1px solid green; padding: 1rem;">
-            <h1><a href="kurulKayit.php"  style="text-decoration-line: none;"> Kayıt Sayfası</a></h1>
+            <h1><a href="kurulKayit.php"  style="text-decoration-line: none;"> Change Your Information</a></h1>
             <form action="" method="POST" enctype="multipart/form-data">
 
                 <div class="form-group  my-2">
-                    <label class="form-label" for="">Kullanılacak Resimi Seçiniz</label>
+                    <label class="form-label" for="">Choose Your Profile Photo</label>
                     <input class="form-control" type="file" name="resim">
                 </div>
 
                 <div class="form-group my-2">
-                    <label class="form-label" for=""> isim gir </label>
+                    <label class="form-label" for="">Type Your Name </label>
                     <input class="form-control" type="text" name="isim">
 
 
                 </div>
                 <div class="form-group my-2">
-                    <label class="form-label" for=""> Linked Adresi </label>
+                    <label class="form-label" for="">Linkedin Account</label>
                     <input  class="form-control" type="text" name="linked">
 
 
                 </div>
                 <div class="form-group my-2">
-                    <label class="form-label" for=""> Mail Adresi</label>
+                    <label class="form-label" for=""> Mail Address</label>
                     <input  class="form-control" type="text" name="mail">
 
                 </div>
-                <input class="mt-3" style="margin: 0px auto;" type="submit" value="gönder">
+                <input class="mt-3" style="margin: 0px auto;" type="submit" value="Send">
 
 
             </form>
@@ -71,11 +71,11 @@ if ($_POST) {
     $resimAdi=$_FILES["resim"]["name"];
 
     
-    if (!file_exists("resimler")) {
-        mkdir("resimler");
+    if (!file_exists("photos")) {
+        mkdir("photos");
     }
     if (!empty($isim) && !empty($linked) && !empty($mail) && !empty($resimAdi)) {
-        $dizin="resimler/";
+        $dizin="photos/";
         $yuklenecekResim=$dizin.$resimAdi;
         if (move_uploaded_file($_FILES["resim"]["tmp_name"],$yuklenecekResim)) {
            
@@ -102,7 +102,7 @@ if ($_POST) {
             echo ' <div class=" mt-2 container">
         <div class="col-6">
              <div class="alert alert-success" role="alert">
-             Kayıt Başarılı
+                Success
             </div>
         </div>
     </div>';
@@ -111,7 +111,7 @@ if ($_POST) {
             echo ' <div class=" mt-2 container">
             <div class="col-6">
                  <div class="alert alert-danger" role="alert">
-                 Kayıt Başarısız
+                  Failed
                 </div>
             </div>
         </div>';
@@ -120,7 +120,7 @@ if ($_POST) {
         echo ' <div class=" mt-2 container">
         <div class="col-6">
              <div class="alert alert-danger" role="alert">
-             Eksik veri girişi
+                there is no data
             </div>
         </div>
     </div>';
@@ -130,9 +130,10 @@ if ($_POST) {
     echo '
     <div class=" mt-2 container">
         <div class="col-6">
-        <div class="alert alert-danger" role="alert">
-    veri gelmiyor
-  </div>
+            <div class="alert alert-danger" role="alert">
+                there is no data
+
+            </div>
         </div>
     </div>
     ';
@@ -149,18 +150,18 @@ $rows=$db->query("SELECT * FROM kurul",PDO::FETCH_ASSOC);
 
 ?>
 <div class="container mt-5" >
-<h1 class="my-4">Kayıt Olanların Listesi</h1>
+<h1 class="my-4">Registrated People</h1>
 
     <div class="row">
         <div class="col-md-12">
             <table class=" text-center table table-bordered   table-striped  table-hover">
                 <thead>
-                    <th class=" text-center">K.No</th>
-                    <th class=" text-center">Resim Adresi</th>
-                    <th class=" text-center">Ad</th>
+                    <th class=" text-center">R.No</th>
+                    <th class=" text-center">Photo Address</th>
+                    <th class=" text-center">Name</th>
                     <th class=" text-center">Email</th>
                     <th class=" text-center">LinkedIn</th>
-                    <th class=" text-center">Durum</th>
+                    <th class=" text-center">Status</th>
 
                 </thead>
                 <tbody>
@@ -174,7 +175,7 @@ $rows=$db->query("SELECT * FROM kurul",PDO::FETCH_ASSOC);
                         <td> <?php  echo $row["linked"]; ?> </td>
 
                         <td>
-                            <a href="sil.php?id=<?php echo $row["id"]; ?>" class="btn btn-danger">Sil</a>
+                            <a href="sil.php?id=<?php echo $row["id"]; ?>" class="btn btn-danger">Delete</a>
                         </td>
                     </tr>
                     <?php    } ?>

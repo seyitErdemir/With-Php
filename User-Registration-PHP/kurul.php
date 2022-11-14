@@ -34,7 +34,7 @@ $rows= $db->query("SELECT * FROM kurul")->fetchAll(PDO::FETCH_ASSOC);
     <div class="container my-5">
         <div class="row">
             <div class="col-md-12">
-                <h1  style="text-align: center; color: white; background: black; padding: 3rem;">Kayıtlı Üyeler</h1>
+                <h1  style="text-align: center; color: white; background: black; padding: 3rem;">Our Employees</h1>
             </div>
         </div>
     </div>
@@ -49,7 +49,7 @@ $rows= $db->query("SELECT * FROM kurul")->fetchAll(PDO::FETCH_ASSOC);
                         <img src="<?php echo $row["resimAdresi"]; ?>" class="img-fluid rounded-circle w-50 mb-3"
                             alt="..." />
                         <h5 class="card-title"><?php echo $row["isim"]; ?></h5>
-                        <p class="card-text">Yönetim Kurulu Eş Başkanı</p>
+                        <p class="card-text">Software Developer</p>
                         <div class="d-flex flex-row justify-content-center">
                             <div class="p-4">
                                 <a href="mailto:<?php echo $row["mail"]; ?>"><i class="fab fa-google google-square"
