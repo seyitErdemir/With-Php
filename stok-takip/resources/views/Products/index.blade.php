@@ -20,7 +20,8 @@
                                 <th>Ürün Adı</th>
                                 <th>Ürün Açıklaması</th>
                                 <th>Stok Miktarı</th>
-                                <th>Ürün Fiyatı</th>
+                                <th>Alış Fiyatı</th>
+                                <th>Satış Fiyatı</th>
                                 <th>Ekleme Tarihi</th>
                                 <th>Satış Yap</th>
                                 <th>Güncelle</th>
@@ -35,7 +36,8 @@
                                 <td>{{$product->name}}</td>
                                 <td><textarea class="form-control" name="" id="" cols="10" rows="2">{{$product->description}}</textarea></td>
                                 <td class="stok-{{$product->id}}">{{$product->stok}}</td>
-                                <td>{{$product->price}}</td>
+                                <td>{{$product->buy_price}}</td>
+                                <td>{{$product->sell_price}}</td>
                                 <td>2011-04-25</td>
 
                                 <td width="10" >
@@ -69,11 +71,10 @@
                                 <th>Ürün Adı</th>
                                 <th>Ürün Açıklaması</th>
                                 <th>Stok Miktarı</th>
-                                <th>Ürün Fiyatı</th>
-
+                                <th>Alış Fiyatı</th>
+                                <th>Satış Fiyatı</th>
                                 <th>Ekleme Tarihi</th>
                                 <th>Satış Yap</th>
-
                                 <th>Güncelle</th>
                                 <th>Sil</th>
                             </tr>

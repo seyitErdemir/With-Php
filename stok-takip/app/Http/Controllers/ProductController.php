@@ -59,7 +59,8 @@ class ProductController extends Controller
 
         $product = Products::insert([
             "name" => $request->name,
-            "price" => $request->price,
+            "buy_price" => $request->buy_price,
+            "sell_price" => $request->sell_price,
             "stok" => $request->stock,
             "description" => $request->description,
             "image" => $imageName,
@@ -124,7 +125,8 @@ class ProductController extends Controller
         $productUpdate = Products::Where('id', $id)->update([
             "name" => $request->name,
             "stok" => $request->stok,
-            "price" => $request->price,
+            "buy_price" => $request->buy_price,
+            "sell_price" => $request->sell_price,
             "description" => $request->description,
             "image" => $imageName,
             "created_at" =>  null,

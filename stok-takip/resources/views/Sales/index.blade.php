@@ -5,49 +5,42 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }} <a href="{{route('products.create')}}" class="btn btn-secondary float-right">Ürün Ekle</a></div>
+                <div class="card-header">
+                    <h2 class="p-3">
+
+                        <b class="me-5 fs-2"> Total Kazanç {{$data['totalPrice']}} TL</b>
+                        <b class="ms-5 fs-2"> Kasa {{$data['casing']}} TL</b>
+
+                        <a href="{{route('sales.day')}}" class="btn btn-warning me-2 float-right">Bugünkü Satışlar</a>
+                        <a href="{{route('sales.month')}}" class="btn btn-warning me-2 float-right">Aylık Satışlar</a>
+                        <a href="{{route('sales.year')}}" class="btn btn-warning me-2 float-right">Yıllık Satışlar</a>
+
+                    </h2>
+
+                </div>
                 <div class="p-2">
 
-                    <table id="example" class="table table-striped" style="width:100%">
+                    <table id="example" class="display" class="table table-striped" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Resim</th>
                                 <th>Ürün Adı</th>
-                                <th>Ürün Açıklaması</th>
-                                <th>Stok Miktarı</th>
-                                <th>Ürün Fiyatı</th>
-                                <th>Ekleme Tarihi</th>
-                                <th>Satış Yap</th>
-                                <th>Güncelle</th>
-                                <th>Sil</th>
+                                <th>Alış Fiyatı</th>
+                                <th>Satış Fiyatı</th>
+                                <th>Satış Tarihi</th>
+                                <th width="20">Sil</th>
                             </tr>
                         </thead>
                         <tbody>
 
-                            @foreach($data['products'] as $product)
-                            <tr>
-                                <td><img width="80" src="{{ url('images/products/'.$product->image) }}" alt=""></td>
-                                <td>{{$product->name}}</td>
-                                <td><textarea class="form-control" name="" id="" cols="10" rows="2">{{$product->description}}</textarea></td>
-                                <td>{{$product->stok}}</td>
-                                <td>{{$product->price}}</td>
-                                <td>2011-04-25</td>
-
+                            @foreach( array_reverse ($data['salesProduct']) as $sale)
+                            <tr id="item-{{$sale['id']}}">
+                                <td>{{$sale['name']}}</td>
+                                <td>{{$sale['buy_price']}}</td>
+                                <td>{{$sale['sell_price']}}</td>
+                                <td>{{$sale['sale_date']}}</td>
                                 <td>
-                                    <a href="javascript:void(0)" type="submit" class="btn btn-secondary salesButton" id="{{$product->id}}">
-                                        Satış
-                                    </a>
-                                </td>
-
-                                <td width="10">
-                                    <a href="{{route('products.edit',$product->id)}}" type="submit" class="btn btn-warning">
-                                        güncel
-                                    </a>
-                                </td>
-
-                                <td>
-                                    <a href="javascript:void(0)" class="btn btn-danger deleteButton">
-                                        <i id="{{$product->id}}" class="fas fa-trash"></i>
+                                    <a id="{{$sale['id']}}" href="javascript:void(0)" class="btn btn-danger deleteButton">
+                                        <i class="fas fa-trash"></i>
                                     </a>
                                 </td>
 
@@ -60,17 +53,12 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th>Resim</th>
                                 <th>Ürün Adı</th>
-                                <th>Ürün Açıklaması</th>
-                                <th>Stok Miktarı</th>
-                                <th>Ürün Fiyatı</th>
-
-                                <th>Ekleme Tarihi</th>
-                                <th>Satış Yap</th>
-
-                                <th>Güncelle</th>
+                                <th>Alış Fiyatı</th>
+                                <th>Satış Fiyatı</th>
+                                <th>Satış Tarihi</th>
                                 <th>Sil</th>
+
                             </tr>
                         </tfoot>
                     </table>
@@ -92,13 +80,29 @@
 </div>
 
 <script>
+    $(document).ready(function() {
+        $('#example').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'excelHtml5',
+                'pdfHtml5'
+            ]
+        });
+    });
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
     $(".deleteButton").click(function() {
         destroy_id = $(this).attr('id');
         alertify.confirm('Silme işlemini onaylayın', 'Bu işlem geri alınamaz',
             function() {
                 $.ajax({
-                    type: "DELETE",
-                    url: "products/" + destroy_id,
+                    type: "GET",
+                    url: "sales/delete/" + destroy_id,
                     success: function(msg) {
                         if (msg) {
                             $("#item-" + destroy_id).remove();
@@ -113,32 +117,6 @@
                 alertify.error('Silme İşlemi İptal Edildi');
             }
         )
-    });
-
-
-
-    $(".salesButton").click(function() {
-        product_id = $(this).attr('id');
-
-
-        let data = { 
-            product_id: product_id 
-        }
-
-        $.ajax({
-            type: "GET",
-            data: data,
-            url: "/addsales",
-            success: function(msg) {
-                if (msg) {
-
-                    alertify.success(msg);
-                } else {
-                    alertify.error("İşlem Tamamlanamadı");
-                }
-            }
-        });
-
     });
 </script>
 @endsection

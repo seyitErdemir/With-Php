@@ -1,21 +1,30 @@
 @extends('layouts.app')
-
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h1 class="p-3"> <b > Total Kazanç {{$data['totalPrice']}} TL</b> <a href="{{ url('/products') }}" class="btn btn-secondary float-right fs-4">Ürünler</a> </h1>
-                    
+
+                    <h2 class="p-3">
+
+                        <b class="me-5 fs-2"> Total Kazanç {{$data['totalPrice']}} TL</b>
+                        <b class="ms-5 fs-2"> Kasa {{$data['casing']}} TL</b>
+
+                        <a href="{{route('sales.day')}}" class="btn btn-warning me-2 float-right">Bugünkü Satışlar</a>
+                        <a href="{{route('sales.month')}}" class="btn btn-warning me-2 float-right">Aylık Satışlar</a>
+                        <a href="{{route('sales.year')}}" class="btn btn-warning me-2 float-right">Yıllık Satışlar</a>
+
+                    </h2>
                 </div>
                 <div class="p-2">
 
-                    <table  id="example" class="display"    class="table table-striped" style="width:100%">
+                    <table id="example" class="display" class="table table-striped" style="width:100%">
                         <thead>
                             <tr>
                                 <th>Ürün Adı</th>
-                                <th>Ürün Fiyatı</th>
+                                <th>Alış Fiyatı</th>
+                                <th>Satış Fiyatı</th>
                                 <th>Satış Tarihi</th>
                                 <th width="20">Sil</th>
                             </tr>
@@ -25,7 +34,8 @@
                             @foreach( array_reverse ($data['salesProduct']) as $sale)
                             <tr id="item-{{$sale['id']}}">
                                 <td>{{$sale['name']}}</td>
-                                <td>{{$sale['price']}}</td>
+                                <td>{{$sale['buy_price']}}</td>
+                                <td>{{$sale['sell_price']}}</td>
                                 <td>{{$sale['sale_date']}}</td>
                                 <td>
                                     <a id="{{$sale['id']}}" href="javascript:void(0)" class="btn btn-danger deleteButton">
@@ -42,9 +52,10 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th>Resim</th>
                                 <th>Ürün Adı</th>
-                                <th>Ürün Açıklaması</th>
+                                <th>Alış Fiyatı</th>
+                                <th>Satış Fiyatı</th>
+                                <th>Satış Tarihi</th>
                                 <th>Sil</th>
 
                             </tr>
@@ -71,8 +82,8 @@
     $(document).ready(function() {
         $('#example').DataTable({
             dom: 'Bfrtip',
-            buttons: [ 
-                'excelHtml5', 
+            buttons: [
+                'excelHtml5',
                 'pdfHtml5'
             ]
         });

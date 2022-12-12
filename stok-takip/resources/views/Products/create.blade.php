@@ -19,7 +19,7 @@
 
                         <div class="form-group">
                             <label for="exampleInputEmail1">Ürün Adı</label>
-                            <input type="text" name="name" class="form-control" placeholder="Ürün Adı"> 
+                            <input type="text" name="name" class="form-control" placeholder="Ürün Adı">
                             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                         </div>
                         <div class="form-group">
@@ -27,10 +27,14 @@
                             <input type="number" name="stock" class="form-control" id="exampleInputPassword1" placeholder="Miktar">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Ürün Fiyatı</label>
-                            <input type="number" name="price"  class="form-control" id="exampleInputPassword1" placeholder="Fiyat">
+                            <label for="exampleInputPassword1">Alış Fiyatı</label>
+                            <input type="number" name="buy_price"  class="form-control" id="exampleInputPassword1" placeholder="Fiyat">
                         </div>
 
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Satış Fiyatı</label>
+                            <input type="number" name="sell_price"  class="form-control" id="exampleInputPassword1" placeholder="Fiyat">
+                        </div>
 
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">Ürün Açıklaması</label>

@@ -37,8 +37,12 @@
                             <input type="number" name="stok" class="form-control" id="exampleInputPassword1" placeholder="Miktar" value="{{$product->stok}}">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Ürün Fiyatı</label>
-                            <input type="number" name="price" class="form-control" id="exampleInputPassword1" placeholder="Fiyat" value="{{$product->price}}">
+                            <label for="exampleInputPassword1">Alış Fiyatı</label>
+                            <input type="number" name="buy_price" class="form-control" id="exampleInputPassword1" placeholder="Fiyat" value="{{$product->buy_price}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Satış Fiyatı</label>
+                            <input type="number" name="sell_price" class="form-control" id="exampleInputPassword1" placeholder="Fiyat" value="{{$product->sell_price}}">
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">Ürün Açıklaması</label>
