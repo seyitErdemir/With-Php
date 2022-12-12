@@ -49,6 +49,14 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <style>
+        body {
+            background-image: url('{{ asset("images/back.jpeg") }}');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
 </head>
 
 <body>
@@ -56,14 +64,14 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
 
-                <a class="navbar-brand" href="{{ url('/products') }}">Stock Module</a>
+                <a class="navbar-brand fs-2" href="{{ url('/products') }}">Stock Module</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                        <a class="nav-link active" aria-current="page" href="{{ url('/products') }}">Ürünler</a>
-                        <a class="nav-link" href="{{ url('/sales') }}">Satışlar</a>
+                        <a class="nav-link   fs-5 btn btn-light mx-3" aria-current="page" href="{{ url('/products') }}">Ürünler</a>
+                        <a class="nav-link   fs-5 btn btn-light" href="{{ url('/sales') }}">Satışlar</a>
                     </div>
                 </div>
 

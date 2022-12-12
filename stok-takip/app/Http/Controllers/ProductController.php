@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Parameters;
 use App\Models\Products;
+use App\Models\Sale;
+use App\Models\Sales;
 use DateTime;
 use Illuminate\Http\Request;
 
@@ -67,8 +70,13 @@ class ProductController extends Controller
             "created_at" => new DateTime()
         ]);
 
-
         if ($product) {
+
+            $product = Products::where('name', $request->name)->get()->first();
+            $casing = $this->getAndUpdateParameters('casing')->value;
+            $newCasing = $casing - ($product->buy_price * $product->stok);
+            $this->getAndUpdateParameters('casing', $newCasing);
+
             return redirect(route('products.index'))->with('success', 'İşlem Başarılı');
         }
         return back()->with('error', 'İşlem Başarısız');
@@ -107,7 +115,6 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
 
-
         if ($request->hasFile('image')) {
 
             $file = $request->file('image');
@@ -133,7 +140,34 @@ class ProductController extends Controller
             "updated_at" =>  new DateTime()
         ]);
 
+
+
         if ($productUpdate) {
+
+            if ($request->old_stok != $request->stok) {
+
+                if ($request->old_stok > $request->stok) {
+                    //toplu satış
+                    Sales::insert(
+                        [
+                            'product_id' => $id, 'quantity' => ($request->old_stok - $request->stok),  "created_at" => new DateTime()
+                        ]
+                    );
+                }
+
+
+
+                $casing = $this->getAndUpdateParameters('casing')->value;
+
+                ($request->old_stok > $request->stok) ?
+                    $casingDeleteTotal = ($request->old_stok -  $request->stok) * $request->sell_price :
+                    $casingDeleteTotal = ($request->stok -  $request->old_stok) * $request->buy_price;
+
+                ($request->old_stok > $request->stok) ?
+                    $this->getAndUpdateParameters('casing', $casing + $casingDeleteTotal) :
+                    $this->getAndUpdateParameters('casing', $casing - $casingDeleteTotal);
+            }
+
             return redirect(route('products.index'))->with('success', 'Update İşlemi Başarılı');
         }
         return back()->with('error', 'İşlem Başarısız');
@@ -155,5 +189,21 @@ class ProductController extends Controller
             echo 1;
         }
         echo 0;
+    }
+
+    public function getAndUpdateParameters($key, $value = null)
+    {
+
+        if ($value != null) {
+            //update
+            Parameters::where('key', $key)->update(['value' => $value]);
+
+            return true;
+        } else {
+
+            $data = Parameters::where('key', $key)->get()->first();
+
+            return $data;
+        }
     }
 }

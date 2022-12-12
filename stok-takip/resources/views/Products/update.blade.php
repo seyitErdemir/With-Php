@@ -35,6 +35,8 @@
                         <div class="form-group">
                             <label for="exampleInputPassword1">Ürün Miktarı</label>
                             <input type="number" name="stok" class="form-control" id="exampleInputPassword1" placeholder="Miktar" value="{{$product->stok}}">
+                            <input type="hidden" name="old_stok"   value="{{$product->stok}}">
+
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Alış Fiyatı</label>

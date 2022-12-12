@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+
+
+@dd($data['salesProduct'])
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -26,6 +29,7 @@
                                 <th>Ürün Adı</th>
                                 <th>Alış Fiyatı</th>
                                 <th>Satış Fiyatı</th>
+                                <th>Satış Miktarı</th>
                                 <th>Satış Tarihi</th>
                                 <th width="20">Sil</th>
                             </tr>
@@ -37,6 +41,7 @@
                                 <td>{{$sale['name']}}</td>
                                 <td>{{$sale['buy_price']}}</td>
                                 <td>{{$sale['sell_price']}}</td>
+                                <td>{{$sale['quantity']}}</td>
                                 <td>{{$sale['sale_date']}}</td>
                                 <td>
                                     <a id="{{$sale['id']}}" href="javascript:void(0)" class="btn btn-danger deleteButton">
@@ -56,6 +61,7 @@
                                 <th>Ürün Adı</th>
                                 <th>Alış Fiyatı</th>
                                 <th>Satış Fiyatı</th>
+                                <th>Satış Miktarı</th>
                                 <th>Satış Tarihi</th>
                                 <th>Sil</th>
 

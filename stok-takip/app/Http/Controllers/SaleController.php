@@ -39,6 +39,7 @@ class SaleController extends Controller
                     "name" => $saleProduct->name,
                     'buy_price' => $saleProduct->buy_price,
                     'sell_price' => $saleProduct->sell_price,
+                    'quantity' => $saleProduct->quantity,
                     'sale_date' => $sale->created_at,
                 ];
                 $data['totalPrice'] = $data['totalPrice'] + ($saleProduct->sell_price - $saleProduct->buy_price);
@@ -55,7 +56,7 @@ class SaleController extends Controller
     {
         $veri = $request->input('product_id');
 
-        $salesInsert = Sales::insert(['product_id' => $veri, "created_at" => new DateTime()]);
+        $salesInsert = Sales::insert(['product_id' => $veri, 'quantity' => "1",  "created_at" => new DateTime()]);
         $deleteStock = Products::where(['id' => $veri])->get()->first()->stok;
         Products::where(['id' => $veri])->update(["stok" => $deleteStock - 1]);
         $products = Products::where(['id' => $veri])->get()->first();
@@ -91,6 +92,7 @@ class SaleController extends Controller
                         "name" => $saleProduct->name,
                         'buy_price' => $saleProduct->buy_price,
                         'sell_price' => $saleProduct->sell_price,
+                        'quantity' => $saleProduct->quantity,
                         'sale_date' => $sale->created_at,
                     ];
                     $data['totalPrice'] = $data['totalPrice'] + ($saleProduct->sell_price - $saleProduct->buy_price);
@@ -126,6 +128,7 @@ class SaleController extends Controller
                         "name" => $saleProduct->name,
                         'buy_price' => $saleProduct->buy_price,
                         'sell_price' => $saleProduct->sell_price,
+                        'quantity' => $saleProduct->quantity,
                         'sale_date' => $sale->created_at,
                     ];
                     $data['totalPrice'] = $data['totalPrice'] + ($saleProduct->sell_price - $saleProduct->buy_price);
@@ -157,6 +160,7 @@ class SaleController extends Controller
                         "name" => $saleProduct->name,
                         'buy_price' => $saleProduct->buy_price,
                         'sell_price' => $saleProduct->sell_price,
+                        'quantity' => $saleProduct->quantity,
                         'sale_date' => $sale->created_at,
                     ];
                     $data['totalPrice'] = $data['totalPrice'] + ($saleProduct->sell_price - $saleProduct->buy_price);

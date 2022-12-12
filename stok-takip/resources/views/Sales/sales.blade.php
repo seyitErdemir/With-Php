@@ -25,6 +25,7 @@
                                 <th>Ürün Adı</th>
                                 <th>Alış Fiyatı</th>
                                 <th>Satış Fiyatı</th>
+                                <th>Satış Miktarı</th>
                                 <th>Satış Tarihi</th>
                                 <th width="20">Sil</th>
                             </tr>
@@ -36,6 +37,7 @@
                                 <td>{{$sale['name']}}</td>
                                 <td>{{$sale['buy_price']}}</td>
                                 <td>{{$sale['sell_price']}}</td>
+                                <td>{{$sale['quantity']}}</td>
                                 <td>{{$sale['sale_date']}}</td>
                                 <td>
                                     <a id="{{$sale['id']}}" href="javascript:void(0)" class="btn btn-danger deleteButton">
@@ -55,6 +57,7 @@
                                 <th>Ürün Adı</th>
                                 <th>Alış Fiyatı</th>
                                 <th>Satış Fiyatı</th>
+                                <th>Satış Miktarı</th>
                                 <th>Satış Tarihi</th>
                                 <th>Sil</th>
 
@@ -63,16 +66,6 @@
                     </table>
                 </div>
 
-
-                <div class="card-body">
-                    @if (session('status'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('status') }}
-                    </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div>
             </div>
         </div>
     </div>
