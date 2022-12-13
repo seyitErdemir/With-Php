@@ -39,7 +39,7 @@ class SaleController extends Controller
                     "name" => $saleProduct->name,
                     'buy_price' => $saleProduct->buy_price,
                     'sell_price' => $saleProduct->sell_price,
-                    'quantity' => $saleProduct->quantity,
+                    'quantity' => $sale->quantity,
                     'sale_date' => $sale->created_at,
                 ];
                 $data['totalPrice'] = $data['totalPrice'] + ($saleProduct->sell_price - $saleProduct->buy_price);
@@ -92,7 +92,7 @@ class SaleController extends Controller
                         "name" => $saleProduct->name,
                         'buy_price' => $saleProduct->buy_price,
                         'sell_price' => $saleProduct->sell_price,
-                        'quantity' => $saleProduct->quantity,
+                        'quantity' => $sale->quantity,
                         'sale_date' => $sale->created_at,
                     ];
                     $data['totalPrice'] = $data['totalPrice'] + ($saleProduct->sell_price - $saleProduct->buy_price);
@@ -101,7 +101,7 @@ class SaleController extends Controller
             }
         }
 
-        return view('Sales.sales', compact('data'));
+        return view('Sales.index', compact('data'));
     }
 
 
@@ -122,13 +122,14 @@ class SaleController extends Controller
                 date('Y', strtotime($sale->created_at)) == date('Y')
             ) {
                 $saleProduct = Products::where(['id' => $sale->product_id])->first();
+
                 if ($saleProduct) {
                     $bilgi = [
                         'id' => $sale->id,
                         "name" => $saleProduct->name,
                         'buy_price' => $saleProduct->buy_price,
                         'sell_price' => $saleProduct->sell_price,
-                        'quantity' => $saleProduct->quantity,
+                        'quantity' => $sale->quantity,
                         'sale_date' => $sale->created_at,
                     ];
                     $data['totalPrice'] = $data['totalPrice'] + ($saleProduct->sell_price - $saleProduct->buy_price);
@@ -139,12 +140,15 @@ class SaleController extends Controller
 
 
 
-        return view('Sales.sales', compact('data'));
+        return view('Sales.index', compact('data'));
     }
 
 
     public function yearSales()
     {
+        $casing = $this->getAndUpdateParameters('casing')->value;
+        $data['casing'] = $casing;
+
         $sales = Sales::all()->sortBy('created_at');
         $data['salesProduct'] = [];
         $data['totalPrice'] = 0;
@@ -171,9 +175,19 @@ class SaleController extends Controller
 
 
 
-        return view('Sales.sales', compact('data'));
+        return view('Sales.index', compact('data'));
     }
 
+
+    public function updateCasing(Request $request)
+    {
+        $result =  $this->getAndUpdateParameters('casing' , $request->casing);
+
+        if($result){
+            return back()->with('success', 'İşlem Başarılı');
+        }
+        return back()->with('error', 'İşlem Başarısız');
+    }
 
     public function getAndUpdateParameters($key, $value = null)
     {

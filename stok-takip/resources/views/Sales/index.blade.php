@@ -3,7 +3,6 @@
 @section('content')
 
 
-@dd($data['salesProduct'])
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -71,18 +70,47 @@
                 </div>
 
 
-                <div class="card-body">
-                    @if (session('status'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('status') }}
-                    </div>
-                    @endif
 
-                    {{ __('You are logged in!') }}
-                </div>
             </div>
         </div>
     </div>
+
+
+
+
+
+    <div class="row justify-content-center mt-5 p-5">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <form method="POST" action="/casing/update"  >
+                        @csrf
+                        <div class="row g-3 align-items-center">
+                            <div class="col-auto">
+                                <label for="inputPassword6" class="col-form-label">
+                                    <button type="submit" class="btn btn-secondary updateButton">Güncelle</button>
+                                </label>
+                            </div>
+                            <div class="col-auto">
+                                <input type="text" id="" class="form-control" name="casing" value="{{$data['casing']}}">
+                            </div>
+                            <div class="col-auto">
+                                <span id="passwordHelpInline" class="form-text">
+                                    Kasayı Güncelleyeceğiniz miktarı girip güncelle butonuna basmanız yeterli.
+                                </span>
+                            </div>
+                        </div>
+
+
+                    </form>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <script>
@@ -101,6 +129,10 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+
+
+
+
 
     $(".deleteButton").click(function() {
         destroy_id = $(this).attr('id');
